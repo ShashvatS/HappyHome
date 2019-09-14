@@ -50,16 +50,18 @@ router.post('/proximity_multiple', (req: express.Request, res: express.Response)
 
         let f = function(distances, recurse: number) {
             ans.push(distances);
-            if (recurse == queries.length) {
+            if (recurse == queries.length - 1) {
                 res.json({ success: true, data: ans});
                 return;
             } else {
+                recurse += 1;
+
                 const start = queries[recurse].start;
                 const item = queries[recurse].item;
                 const mode = queries[recurse].mode;  
                 
                 runDistanceCalc(start, item, mode, (distances) => {
-                    f(distances, recurse + 1);
+                    f(distances, recurse);
                 });
             }
         }
