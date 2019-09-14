@@ -10,14 +10,16 @@ var main_1 = require("./routes/main");
 var app = express();
 var server = http.createServer(app);
 var constants_1 = require("./constants");
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cookieParser());
 for (var _i = 0, serveModules_1 = constants_1.serveModules; _i < serveModules_1.length; _i++) {
     var theModule = serveModules_1[_i];
     app.use("/" + theModule, express.static(path.join(__dirname, "node_modules", theModule)));
 }
 app.use(express.static(path.join(__dirname, "public")));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cookieParser());
 app.use('/', main_1.default);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

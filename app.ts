@@ -15,16 +15,20 @@ const server: http.Server = http.createServer(app);
 
 import { serveModules } from "./constants";
 
-for (let theModule of serveModules) {
-    app.use("/" + theModule, express.static(path.join(__dirname, "node_modules", theModule)));
-}
 
-app.use(express.static(path.join(__dirname, "public")));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+
+for (let theModule of serveModules) {
+    app.use("/" + theModule, express.static(path.join(__dirname, "node_modules", theModule)));
+}
+
+app.use(express.static(path.join(__dirname, "public")));
 app.use('/', mainRoutes);
 
 // catch 404 and forward to error handler
