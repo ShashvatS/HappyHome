@@ -1,31 +1,227 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
     <title>Hello world</title>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" 
+          integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" 			
+          crossorigin="anonymous"> 
+bootstrap material design -->
+
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <style>
+        .graph-card-wide.mdl-card {
+            width: 90%;
+            margin: auto;
+        }
+
+        .graph-card-wide>.mdl-card__title {
+            color: #fff;
+            height: 60px;
+            background: #46B6AC;
+        }
+
+        .graph-card-wide>.mdl-card__menu {
+            color: #fff;
+        }
+
+        #chart_div {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+
 </head>
 
 <body>
-    <h1>Hello world como estas!</h1>
 
-    <form id="mainform">
-        start <input name="start" type="text"> <br>
-        item <input name="item" type="text"> <br>
-        mode <input name="mode" type="text"> <br>
-        <input type="submit">
-    </form>
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout-icon"></div>
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout__title">
+                    <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="sample3">
+                            <label class="mdl-textfield__label" for="sample3">Address</label>
+                        </div>
+                        <!-- Colored FAB button with ripple -->
+                        <button
+                            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                            <i class="material-icons">add</i>
+                        </button>
+                    </form>
+                </span>
+                <div class="mdl-layout-spacer"></div>
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="#">Nav link 1</a>
+                    <a class="mdl-navigation__link" href="#">Nav link 2</a>
+                    <a class="mdl-navigation__link" href="#">Nav link 3</a>
+                </nav>
 
-    <form id="otherform">
-        <input class="address" name="start" type="text">
-        <input class="qualities" name="start" type="text">
-        <input type="submit">
-    </form>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout__title">Simple Layout</span>
+            <!-- <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="#">Nav link </a>
+      <a class="mdl-navigation__link" href="#">Nav link 2</a>
+      <a class="mdl-navigation__link" href="#">Nav link 3</a>
+    </nav> -->
+            <label for="chkbox1" class="mdl-checkbox mdl-js-checkbox">
+                <input type="checkbox" id="chkbox1" class="mdl-checkbox__input" checked>
+                <span class="mdl-checkbox__label">Enable AutoSave</span>
+            </label>
+            <label for="chkbox2" class="mdl-checkbox mdl-js-checkbox">
+                <input type="checkbox" id="chkbox2" class="mdl-checkbox__input" checked>
+                <span class="mdl-checkbox__label">Enable AutoSave</span>
+            </label>
 
-    <script src="scripts/main.js"></script>
+        </div>
+        <main class="mdl-layout__content">
+            <!-- begin content outside of sidebar-->
+
+
+
+            <form action="#">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="sample3">
+                    <label class="mdl-textfield__label" for="sample3">Address</label>
+                </div>
+            </form>
+
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+                <i class="material-icons">add</i>
+            </button>
+
+            <br>
+
+
+            <div class="graph-card-wide mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Safety</h2>
+                </div>
+                <div id="chart_div"></div>
+                <div class="mdl-card__supporting-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Mauris sagittis pellentesque lacus eleifend lacinia...
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        Get Started
+                    </a>
+                </div>
+                <div class="mdl-card__menu">
+                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <i class="material-icons">share</i>
+                    </button>
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <script>
+                //can have multiple document.ready calls
+
+                console.log("in");
+                var dists = [];
+                var dist = 10;
+
+                function safetyUpdate() {
+
+
+                    let address = "500 Memorial Dr, Cambridge, MA 02139";
+                    let qualities = ["local police station", "local fire station", "local hospital"];
+                    let q = [];
+
+                    for (let i = 0; i < qualities.length; i += 1) {
+                        q.push({
+                            start: address,
+                            item: qualities[i],
+                            mode: 'driving'
+                        });
+                    }
+
+                    const queries = {
+                        queries: q
+                    };
+
+                    console.log(queries);
+
+                    $.ajax({
+                        url: 'https://househappy.herokuapp.com/proximity_multiple',
+                        type: 'post',
+                        data: JSON.stringify(queries),
+                        contentType: "application/json",
+                        success: response => {
+
+                            //actually do stuff here with response
+                            //parse response
+
+                            console.log("other form submit response");
+                            console.log(response);
+                        }
+                    });
+
+
+                }
+
+
+            </script>
+
+
+            <script>
+                google.charts.load('current', { 'packages': ['bar'] });
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Amenity', 'House 1', 'House 2', 'House 3'],
+                        ['Police Station', dist, 4, 2],
+                        ['Fire', 11, 14, 2],
+                        ['Hospital', 6, 11, 3]
+                    ]);
+
+                    var options = {
+                        chart: {
+                            title: ' '
+                        },
+                        bars: 'vertical',
+                        vAxis: { format: 'decimal' },
+                        height: 300,
+                        colors: ['#1b9e77', '#d95f02', '#7570b3']
+                    };
+
+                    var chart = new google.charts.Bar(document.getElementById('chart_div'));
+
+                    chart.draw(data, google.charts.Bar.convertOptions(options));
+
+                    var btns = document.getElementById('btn-group');
+
+                    btns.onclick = function (e) {
+
+                        if (e.target.tagName === 'BUTTON') {
+                            options.vAxis.format = e.target.id === 'none' ? '' : e.target.id;
+                            chart.draw(data, google.charts.Bar.convertOptions(options));
+                        }
+                    }
+                }
+            </script>
+
+
+        </main>
+    </div> <!-- ends main content outside of sidebar-->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </body>
 
 </html>

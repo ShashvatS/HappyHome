@@ -51,7 +51,7 @@ $(document).ready(() => {
                 console.log("other form submit response");
                 console.log(response);
             }
-        })
+        });
 
         return false;
     });

@@ -1,0 +1,7 @@
+{
+    "appService.deploySubpath": "",
+    "appService.zipIgnorePattern": [
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/b5994621-73c2-4def-9323-be2bb7c15e4b/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/happyhome"
+}
