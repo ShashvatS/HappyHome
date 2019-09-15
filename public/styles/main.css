@@ -74,3 +74,31 @@ your background is light. */
 .redisplaybtn {
     display: none;
 }
+
+#declareform2 {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.declarebox {
+    display: block;
+    height: auto;
+  }
+
+#declareform2 .column {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 40%;
+    left: 0%;
+    border-right: 1px solid black;
+  }
+
+#declareform2 .column2 {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 40%;
+    right: 0%;
+}

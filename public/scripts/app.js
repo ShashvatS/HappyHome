@@ -7,7 +7,7 @@ const qualityMap = {
     "bar": "Bar",
     "bus station": "Bus",
     "cafe": "Cafe",
-    "clothing store": "CLothes",
+    "clothing store": "Clothes",
     "daycare": "Daycare",
     "elementary school": "Elementary School",
     "groceries": "Groceries",
@@ -24,8 +24,6 @@ const qualityMap = {
     "trails": "Trails",
     "train": "Train"
 };
-
-const hideAll = true;
 
 
 let minimizeGraphButtons = document.getElementsByClassName("hide-graph");
@@ -52,7 +50,7 @@ for (let i = 0; i < minimizeGraphButtons.length; ++i) {
 function notify(msg) {
     const notification = document.querySelector('.mdl-js-snackbar');
     const notificationData = {
-      message: msg
+        message: msg
     };
 
     notification.MaterialSnackbar.showSnackbar(notificationData);
@@ -75,7 +73,10 @@ function updateAll(address) {
     };
 
     console.log(queries);
-    notify("Collecting data")
+    notify("Collecting data");
+
+    addAddressChip(address);
+
 
     $.ajax({
         url: '/proximity_multiple',
@@ -112,8 +113,69 @@ function updateAll(address) {
     });
 }
 
+function updateHomeComp() {
+    let box = document.getElementById("declarebox1");
+    let box2 = document.getElementById("declarebox2");
+
+    for (let i = 0; i < box2.getElementsByTagName("div").length; i += 1) {
+        let child = box2.getElementsByTagName("div")[i];
+        console.log(child);
+        let textNode = child.childNodes[0].childNodes[0];
+        homeComp.delete(textNode.textContent);
+    }
+
+    for (let i = 0; i < box.getElementsByTagName("div").length; i += 1) {
+        let child = box.getElementsByTagName("div")[i];
+        console.log(child);
+        let textNode = child.childNodes[0].childNodes[0];
+        if (distances[textNode.textContent] === undefined || distances[textNode.textContent] === null) {
+            continue;
+        }
+        homeComp.add(textNode.textContent);
+    }
+}
+
+let numChips = 0;
+function addAddressChip(address) {
+    numChips += 1;
+
+    let box = document.getElementById("declarebox1");
+    let box2 = document.getElementById("declarebox2");
+
+    box.onchange = () => {
+        updateHomeComp();
+        drawChart();
+    };
+
+    box2.onchange = () => {
+        updateHomeComp();
+        drawChart();
+    };
+    console.log(box);
+    let div = document.createElement("div");
+    box.appendChild(div);
+    div.className = "declareitem";
+    div.innerHTML = "<span class=\"mdl-chip decarechip1\"><span class=\"mdl-chip__text\">" + address + "</span><button id=\"specialtmp\"type=\"button\" class=\"mdl-chip__action\"><i class=\"material-icons\">cancel</i></button></span>";
+    let btn = document.getElementById("specialtmp");
+    btn.removeAttribute("id");
+    btn.addEventListener("click", () => {
+        console.log(btn.parentNode);
+        btn.parentNode.parentNode.removeChild(btn.parentNode);
+        homeComp.delete(address);
+        numChips -= 1;
+        drawChart();
+    });
+}
+
+$("#chatMessage").keyup(function (event) {
+    if (event.keyCode === 13) {
+        $("#sendmessagebutton").click();
+    }
+});
+
 $('#addresssubmit').click(function (e) {
     document.getElementById("content").style.display = "block";
+    document.getElementById("declareformparent").style.display = "block";
     e.preventDefault();
 
     const address = document.getElementById("addressboxvalue").value;
@@ -127,8 +189,13 @@ google.charts.load('current', { 'packages': ['bar'] });
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
+    console.log("drawing chart...");
     if (homeComp.size == 0) {
         console.log(homeComp.size);
+        document.getElementById("content").style.display = "none";
+        if (numChips == 0) {
+            document.getElementById("declareformparent").style.display = "none";
+        }
         return;
     }
 

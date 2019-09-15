@@ -18,6 +18,7 @@ bootstrap material design -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="styles/main.css" media="screen" />
 </head>
@@ -37,14 +38,33 @@ bootstrap material design -->
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" type="text" id="addressboxvalue">
                         <label class="mdl-textfield__label" for="addressboxvalue">Address</label>
-                        <input id="addresssubmit" type="submit">
+                        <input id="addresssubmit" type="submit" style="display: none">
                     </div>
                 </div>
             </form>
 
             <br>
 
+            <div id="declareformparent" style="display: none">
+                <div id="declareform2">
+                    <div class="column">
+                        <span id="declare2player1" class="mdl-layout-title">Show</span>
+                        <br>
+                        <div id="declarebox1" class="declarebox">
+                            
+                        </div>
+                    </div>
+                    <div class="column2">
+                        <span id="declare2player2" class="mdl-layout-title">Hide</span>
+                        <br>
+                        <div id="declarebox2" class="declarebox">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div id="redisplaybuttonarray">
+                <br>
                 <button class="redisplaybtn mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
                     data-graph="safety_graph">
                     Safety
@@ -245,6 +265,24 @@ bootstrap material design -->
     </div>
 
     <script src="scripts/app.js"></script>
+    <script>
+
+        new Sortable(document.getElementById("declarebox1"), {
+            group: {
+                name: 'declare',
+            },
+            animation: 150,
+            draggable: ".declareitem"
+        });
+
+        new Sortable(document.getElementById("declarebox2"), {
+            group: {
+                name: 'declare',
+            },
+            animation: 150,
+            draggable: ".declareitem"
+        });
+    </script>
 </body>
 
 </html>
