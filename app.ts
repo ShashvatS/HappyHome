@@ -23,7 +23,19 @@ app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors());
+
+var whitelist = [
+    'localhost:5000',
+    'https://syncfiddle.net'
+];
+var corsOptions = {
+    origin: function(origin, callback){
+        var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+        callback(null, originIsWhitelisted);
+    },
+    credentials: true
+};
+app.use(cors(corsOptions));
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
