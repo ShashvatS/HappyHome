@@ -102,3 +102,11 @@ your background is light. */
     width: 40%;
     right: 0%;
 }
+
+#tabledivcontainer {
+    text-align: center;
+}
+
+.centerstuff {
+    text-align: center;
+}

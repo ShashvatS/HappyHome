@@ -16,7 +16,7 @@ const qualityMap = {
     "library": "Library",
     "local fire station": "Fire Station",
     "local hospital": "Hospital",
-    "local police station": "Police",
+    "local police station": "Police Station",
     "middle school": "Middle School",
     "movie theater": "Movie Theater",
     "park": "Park",
@@ -43,9 +43,32 @@ for (let i = 0; i < minimizeGraphButtons.length; ++i) {
             let graph = btn.getAttribute("data-graph");
             document.getElementById(graph).style.display = "block";
             btn.style.display = "none";
+            drawChart();
         });
     });
 }
+
+function toggle(id) {
+    if (id.style.display === "none") {
+        id.style.display = "block";
+    } else {
+        id.style.display = "none";
+    }
+}
+
+let swapGraphButtons = document.getElementsByClassName("swap-graph");
+for (let i = 0; i < swapGraphButtons.length; ++i) {
+    swapGraphButtons[i].addEventListener("click", () => {
+        let parent = swapGraphButtons[i].parentNode.parentNode;
+        let chart = parent.getElementsByClassName("chart")[0];
+        let table = parent.getElementsByClassName("centerstuff")[0].getElementsByClassName("table")[0];
+
+        toggle(chart);
+        toggle(table);
+        drawChart();
+    });
+}
+
 
 function notify(msg) {
     const notification = document.querySelector('.mdl-js-snackbar');
@@ -243,4 +266,67 @@ function drawChart() {
         chart.draw(data, google.charts.Bar.convertOptions(options));
     }
 
+    for (let i = 0; i < graphs.length; ++i) {
+        let graph = graphs[i];
+        let qualities = qualities2[i];
+
+        let data = new google.visualization.DataTable();
+        data.addColumn('string', 'Amenity (miles away)');
+        homeComp.forEach((value) => {
+            data.addColumn('number', value);
+        });
+
+        let datacomp = [];
+
+        for (let i = 0; i < qualities.length; ++i) {
+            let cur = [qualityMap[qualities[i]]];
+            homeComp.forEach((value) => {
+                cur.push(distances[value][qualities[i]]);
+            });
+            datacomp.push(cur);
+        }
+
+        data.addRows(datacomp);
+
+        let graphDiv = document.getElementById(graph + "_graph");
+        let table = graphDiv.getElementsByClassName("centerstuff")[0].getElementsByClassName("table")[0];
+        table = new google.visualization.Table(table);
+    
+        table.draw(data, { showRowNumber: false, width: 'auto', height: 'auto', colors: ['#1b9e77', '#d95f02', '#7570b3'] });
+
+    }
+
+    drawTable();
+}
+
+google.charts.load('current', { 'packages': ['table'] });
+google.charts.setOnLoadCallback(drawTable);
+
+function drawTable() {
+    const qualities = ["local police station", "local fire station", "local hospital", "elementary school", "middle school", "high school", "daycare", "clothing store", "Best Buy", "groceries", "movie theater", "gym", "library", "restaurant", "bar", "cafe", "airport", "train", "bus station", "park", "trails"];
+
+    let data = new google.visualization.DataTable();
+    if (homeComp.size == 0) {
+        return;
+    }
+
+    data.addColumn('string', 'Amenity (miles away)');
+    homeComp.forEach((value) => {
+        data.addColumn('number', value);
+    });
+
+    let datacomp = [];
+    for (let i = 0; i < qualities.length; ++i) {
+        let cur = [qualityMap[qualities[i]]];
+        homeComp.forEach((value) => {
+            cur.push(distances[value][qualities[i]]);
+        });
+        datacomp.push(cur);
+    }
+
+    data.addRows(datacomp);
+
+    const table = new google.visualization.Table(document.getElementById('table_div'));
+
+    table.draw(data, { showRowNumber: false, width: 'auto', height: 'auto', colors: ['#1b9e77', '#d95f02', '#7570b3'] });
 }
