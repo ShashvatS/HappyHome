@@ -133,6 +133,8 @@ function updateHomeComp() {
         }
         homeComp.add(textNode.textContent);
     }
+
+    console.log(homeComp);
 }
 
 let numChips = 0;
@@ -199,6 +201,9 @@ function drawChart() {
         return;
     }
 
+    document.getElementById("content").style.display = "block";
+    document.getElementById("declareformparent").style.display = "block";
+
     const graphs = ["safety", "education", "shopping", "lifestyle", "food", "transportation", "nature"];
     const qualities2 = [["local police station", "local fire station", "local hospital"], ["elementary school", "middle school", "high school", "daycare"], ["clothing store", "Best Buy", "groceries"], ["movie theater", "gym", "library"], ["restaurant", "bar", "cafe"], ["airport", "train", "bus station"], ["park", "trails"]];
 
@@ -208,7 +213,6 @@ function drawChart() {
 
         let data = [['Amenity']];
         homeComp.forEach((value) => {
-            console.log("homecomp", value);
             data[0].push(value);
         });
 
@@ -216,12 +220,9 @@ function drawChart() {
             data.push([qualityMap[qualities[j]]]);
 
             homeComp.forEach((value) => {
-                console.log(distances);
                 data[data.length - 1].push(distances[value][qualities[j]]);
             });
         }
-
-        console.log(data);
 
         data = google.visualization.arrayToDataTable(data);
 
@@ -238,7 +239,6 @@ function drawChart() {
             height: 300,
             colors: ['#1b9e77', '#d95f02', '#7570b3']
         };
-
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
     }
