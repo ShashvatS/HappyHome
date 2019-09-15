@@ -21,19 +21,44 @@ bootstrap material design -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="styles/main.css" media="screen" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
     <div class="mdl-layout mdl-js-layout">
-        <main class="mdl-layout__content">
-            <div class="demo-cardt-wide mdl-card">
+        <main id="mainmainmain" class="mdl-layout__content">
+            <div id="bgdiv">
+
+                <div id="headercard">Happy Home</div>
+                <form id="addressform" method="post" action="#cards">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="sample3">
+                        <label class="mdl-textfield__label" for="sample3">Enter your address</label>
+                        <input id="addresssubmit" type="submit" style="display: none">
+                    </div>
+                    <a id="go" href="#declareformparent" class="mdl-button mdl-js-button mdl-button--fab">
+                        <i class="material-icons">arrow_forward</i>
+                    </a>
+                </form>
+
+                <!-- <form id="addressform" action="#">
+                            
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="addressboxvalue">
+                                    <label class="mdl-textfield__label" for="addressboxvalue">Address</label>
+                                    <input id="addresssubmit" type="submit" style="display: none">
+                                </div>
+                            
+                        </form> -->
+            </div>
+            <!-- <div class="demo-cardt-wide mdl-card">
                 <div id="headercardparent" class="mdl-card__title">
                     <div id="headercard" class="mdl-card__title-text">Happy Home</div>
                 </div>
-            </div>
+            </div> -->
 
-            <form id="addressform" action="#">
+            <!-- <form id="addressform" action="#">
                 <div id="addressbox">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" type="text" id="addressboxvalue">
@@ -41,7 +66,7 @@ bootstrap material design -->
                         <input id="addresssubmit" type="submit" style="display: none">
                     </div>
                 </div>
-            </form>
+            </form> -->
 
             <br>
 
@@ -356,6 +381,36 @@ bootstrap material design -->
             },
             animation: 150,
             draggable: ".declareitem"
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Add smooth scrolling to all links
+
+
+            $("#go").on('click', function (event) {
+                console.log("HEEEEEEELO WORLD");
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('#mainmainmain').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function () {
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                } // End if
+            });
+
         });
     </script>
 </body>

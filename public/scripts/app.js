@@ -192,10 +192,14 @@ function addAddressChip(address) {
     });
 }
 
-$("#chatMessage").keyup(function (event) {
-    if (event.keyCode === 13) {
-        $("#sendmessagebutton").click();
-    }
+// $("#sample3").keyup(function (event) {
+//     if (event.keyCode === 13) {
+//         $("#addresssubmit").click();
+//     }
+// });
+
+$('#go').click((e) => {
+    $("#addresssubmit").click();
 });
 
 $('#addresssubmit').click(function (e) {
@@ -203,7 +207,8 @@ $('#addresssubmit').click(function (e) {
     document.getElementById("declareformparent").style.display = "block";
     e.preventDefault();
 
-    const address = document.getElementById("addressboxvalue").value;
+    const address = document.getElementById("sample3").value;
+    console.log("ADDRESS", address);
     updateAll(address);
 
     return false;

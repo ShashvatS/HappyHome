@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+  }
+
 .graph-card-wide.mdl-card {
     width: 90%;
     margin: auto;
@@ -41,14 +45,20 @@ your background is light. */
     margin: auto;
 }
 
-.demo-cardt-wide>.mdl-card__title {
+#bgdiv {
     color: #fff;
-    height: 600px;
-    background: url('../images/background3.png') center / cover;
+     height: 100%;
+    background: url('../images/background4.jpg') center / cover;
 }
 
 .demo-cardt-wide>.mdl-card__menu {
     color: #fff;
+}
+
+
+.mdl-layout, .mdl-js-layout{
+ width: 100%;
+text-align: center;
 }
 
 #headercardparent {
@@ -56,16 +66,61 @@ your background is light. */
 }
 
 
-#headercard {
+/* #headercard {
     font-size: 50pt;
     text-align: center;
     width: 100%;
+} */
+
+#headercard {
+    font-size: 70pt;
+    text-align: center;
+    width: 100%;
+    font-family: 'Open Sans Condensed';
+    color: #fff;
+    padding-top: 340px;
 }
 
-#addressbox {
+.mdl-textfield__label{
+  color: rgb(255, 255, 255, 0.5);
+  font-size: 40px;
+  font-weight: bold;
+  font-family: 'Open Sans Condensed';
+  padding-top: 20px;
+  padding-bottom: 40px;
+  margin-top:45px;
+}
+
+#sample3 {
+   color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+   border-bottom:1px solid #fff;
+  font-family: 'Open Sans Condensed';
+  margin-top:50px;
+}
+
+#go {
+   font-family: 'Open Sans Condensed';
+font-size: 40px;
+padding: 10px;
+height: 60px;
+}
+
+.mdl-button {
+    background: rgb(180,180,180,1);
+   margin-bottom: 10px;
+   }
+   
+   .mdl-button:hover {
+    background: rgb(120,120,120,1);
+   margin-bottom: 10px;
+   }
+
+/* #addressbox {
     width: 30%;
     margin: auto;
-}
+} */
 
 #redisplaybuttonarray {
     text-align: center;
