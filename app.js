@@ -6,6 +6,7 @@ var http = require("http");
 var path = require("path");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
+// import cors = require("cors");
 var main_1 = require("./routes/main");
 var app = express();
 var server = http.createServer(app);
@@ -15,6 +16,11 @@ app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
 for (var _i = 0, serveModules_1 = constants_1.serveModules; _i < serveModules_1.length; _i++) {
     var theModule = serveModules_1[_i];
     app.use("/" + theModule, express.static(path.join(__dirname, "node_modules", theModule)));

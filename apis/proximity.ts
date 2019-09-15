@@ -16,8 +16,14 @@ function getLongLat(address: string, next) {
     url.searchParams.set('address', address);
 
     request(url.href, (error, response, body) => {
-        body = JSON.parse(body);
-        next(body);
+        if (body === undefined) {
+            next(null);
+            return;
+        }
+        else {
+            body = JSON.parse(body);
+            next(body);
+        }
     });
 }
 

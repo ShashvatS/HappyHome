@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
-    <title>Hello world</title>
+    <title>Happy Home</title>
     <!-- <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" 
           integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" 			
           crossorigin="anonymous"> 
@@ -13,201 +14,237 @@ bootstrap material design -->
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  
-  <style>
-.graph-card-wide.mdl-card {
-  width: 90%;
-  margin: auto;
-}
-.graph-card-wide > .mdl-card__title {
-  color: #fff;
-  height: 60px;
-  background: #46B6AC;
-}
-.graph-card-wide > .mdl-card__menu {
-  color: #fff;
-}
-    
-#chart_div {
-	width: 80%;
-	margin:auto;
-}
-</style>
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles/main.css" media="screen" />
 </head>
 
 <body>
-  
-  <div class="mdl-layout mdl-js-layout">
-  <header class="mdl-layout__header">
-    <div class="mdl-layout-icon"></div>
-    <div class="mdl-layout__header-row">
-      <span class="mdl-layout__title">  <form action="#">
-  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input class="mdl-textfield__input" type="text" id="sample3">
-    <label class="mdl-textfield__label" for="sample3">Address</label>
-  </div>
-  <!-- Colored FAB button with ripple -->
-<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
-  <i class="material-icons">add</i>
-</button>
-</form></span>
-      <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="#">Nav link 1</a>
-        <a class="mdl-navigation__link" href="#">Nav link 2</a>
-        <a class="mdl-navigation__link" href="#">Nav link 3</a>
-      </nav>
 
+    <div class="mdl-layout mdl-js-layout">
+        <main class="mdl-layout__content">
+            <div class="demo-cardt-wide mdl-card">
+                <div id="headercardparent" class="mdl-card__title">
+                    <div id="headercard" class="mdl-card__title-text">Happy Home</div>
+                </div>
+            </div>
+
+            <form id="addressform" action="#">
+                <div id="addressbox">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="addressboxvalue">
+                        <label class="mdl-textfield__label" for="addressboxvalue">Address</label>
+                        <input id="addresssubmit" type="submit">
+                    </div>
+                </div>
+            </form>
+
+            <br>
+
+            <div id="redisplaybuttonarray">
+                <button class="redisplaybtn mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                    data-graph="safety_graph">
+                    Safety
+                </button>
+
+                <button class="redisplaybtn mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                    data-graph="education_graph">
+                    Education
+                </button>
+
+                <button class="redisplaybtn mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                    data-graph="shopping_graph">
+                    Shopping
+                </button>
+
+                <button class="redisplaybtn mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                    data-graph="lifestyle_graph">
+                    Lifestyle
+                </button>
+
+                <button class="redisplaybtn mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                    data-graph="food_graph">
+                    Food
+                </button>
+
+                <button class="redisplaybtn mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                    data-graph="transportation_graph">
+                    Transportation
+                </button>
+
+                <button class="redisplaybtn mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                    data-graph="nature_graph">
+                    Nature
+                </button>
+
+            </div>
+
+            <br>
+
+            <div id="content" style="display: none">
+                <div id="safety_graph" class="graph-card-wide mdl-card mdl-shadow--2dp" data-graph="0">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Safety</h2>
+                    </div>
+                    <div class="chart"></div>
+                    <!-- <div class="mdl-card__supporting-text">
+                                </div> -->
+                    <!-- <div class="mdl-card__actions mdl-card--border">
+                                </div> -->
+                    <div class="mdl-card__menu">
+                    </div>
+                    <div class="mdl-card__menu">
+                        <button class="hide-graph mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                            <i class="material-icons">minimize</i>
+                        </button>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div id="education_graph" class="graph-card-wide mdl-card mdl-shadow--2dp" data-graph="1">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Education</h2>
+                    </div>
+                    <div class="chart"></div>
+                    <!-- <div class="mdl-card__supporting-text">
+                                        </div> -->
+                    <!-- <div class="mdl-card__actions mdl-card--border">
+                                        </div> -->
+                    <div class="mdl-card__menu">
+                    </div>
+                    <div class="mdl-card__menu">
+                        <button class="hide-graph mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                            <i class="material-icons">minimize</i>
+                        </button>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div id="shopping_graph" class="graph-card-wide mdl-card mdl-shadow--2dp" data-graph="2">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Shopping</h2>
+                    </div>
+                    <div class="chart"></div>
+                    <!-- <div class="mdl-card__supporting-text">
+                                            </div> -->
+                    <!-- <div class="mdl-card__actions mdl-card--border">
+                                            </div> -->
+                    <div class="mdl-card__menu">
+                    </div>
+                    <div class="mdl-card__menu">
+                        <button class="hide-graph mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                            <i class="material-icons">minimize</i>
+                        </button>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div id="lifestyle_graph" class="graph-card-wide mdl-card mdl-shadow--2dp" data-graph="3">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Lifestyle</h2>
+                    </div>
+                    <div class="chart"></div>
+                    <!-- <div class="mdl-card__supporting-text">
+                                                </div> -->
+                    <!-- <div class="mdl-card__actions mdl-card--border">
+                                                </div> -->
+                    <div class="mdl-card__menu">
+                    </div>
+                    <div class="mdl-card__menu">
+                        <button class="hide-graph mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                            <i class="material-icons">minimize</i>
+                        </button>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div id="food_graph" class="graph-card-wide mdl-card mdl-shadow--2dp" data-graph="4">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Food</h2>
+                    </div>
+                    <div class="chart"></div>
+                    <!-- <div class="mdl-card__supporting-text">
+                                                    </div> -->
+                    <!-- <div class="mdl-card__actions mdl-card--border">
+                                                    </div> -->
+                    <div class="mdl-card__menu">
+                    </div>
+                    <div class="mdl-card__menu">
+                        <button class="hide-graph mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                            <i class="material-icons">minimize</i>
+                        </button>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div id="transportation_graph" class="graph-card-wide mdl-card mdl-shadow--2dp" data-graph="5">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Transportation</h2>
+                    </div>
+                    <div class="chart"></div>
+                    <!-- <div class="mdl-card__supporting-text">
+                                                        </div> -->
+                    <!-- <div class="mdl-card__actions mdl-card--border">
+                                                        </div> -->
+                    <div class="mdl-card__menu">
+                    </div>
+                    <div class="mdl-card__menu">
+                        <button class="hide-graph mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                            <i class="material-icons">minimize</i>
+                        </button>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div id="nature_graph" class="graph-card-wide mdl-card mdl-shadow--2dp" data-graph="6">
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Nature</h2>
+                    </div>
+                    <div class="chart"></div>
+                    <!-- <div class="mdl-card__supporting-text">
+                                                            </div> -->
+                    <!-- <div class="mdl-card__actions mdl-card--border">
+                                                            </div> -->
+                    <div class="mdl-card__menu">
+                    </div>
+                    <div class="mdl-card__menu">
+                        <button class="hide-graph mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                            <i class="material-icons">minimize</i>
+                        </button>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+            </div>
+
+            <br>
+            <br>
+
+            <div aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">
+                <div class="mdl-snackbar__text"></div>
+                <button type="button" class="mdl-snackbar__action"></button>
+            </div>
+        </main>
     </div>
-  </header>
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout__title">Simple Layout</span>
-    <!-- <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="#">Nav link </a>
-      <a class="mdl-navigation__link" href="#">Nav link 2</a>
-      <a class="mdl-navigation__link" href="#">Nav link 3</a>
-    </nav> -->
-          <label for="chkbox1" class="mdl-checkbox mdl-js-checkbox">
-  <input type="checkbox" id="chkbox1" class="mdl-checkbox__input" checked>
-  <span class="mdl-checkbox__label">Enable AutoSave</span>
-</label>
-   <label for="chkbox2" class="mdl-checkbox mdl-js-checkbox">
-  <input type="checkbox" id="chkbox2" class="mdl-checkbox__input" checked>
-  <span class="mdl-checkbox__label">Enable AutoSave</span>
-</label>
-          
-  </div>
-  <main class="mdl-layout__content"> <!-- begin content outside of sidebar-->
 
-  
-  
-<form action="#">
-  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-    <input class="mdl-textfield__input" type="text" id="sample3">
-    <label class="mdl-textfield__label" for="sample3">Address</label>
-  </div>
-</form>
-  
-<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-  <i class="material-icons">add</i>
-</button>
-
-    <br>
- 
-    
-    <div class="graph-card-wide mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Safety</h2>
-  </div>
-      <div id="chart_div"></div>
-  <div class="mdl-card__supporting-text">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Mauris sagittis pellentesque lacus eleifend lacinia...
-  </div>
-  <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-      Get Started
-    </a>
-  </div>
-  <div class="mdl-card__menu">
-    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-      <i class="material-icons">share</i>
-    </button>
-  </div>
-</div>
-    
-    <br>
-    <br>
-
-    <script>
-//can have multiple document.ready calls
-
-      console.log("in");
-        var dists = [];
-      	var dist = 10;
-      
-//		function safetyUpdate() {
-
-      
-        let address = "500 Memorial Dr, Cambridge, MA 02139";
-      	let qualities = ["local police station", "local fire station", "local hospital"];
-        let q = [];
-
-        for (let i = 0; i < qualities.length; i += 1) {
-            q.push({
-                start: address,
-                item: qualities[i],
-                mode: 'driving'
-            });
-        }
-
-        const queries = {
-            queries: q
-        };
-
-        console.log(queries);
-
-        $.ajax({
-            url: 'https://househappy.herokuapp.com/proximity_multiple',
-            type: 'post',
-            data: JSON.stringify(queries),
-            contentType: "application/json",
-            success: response => {
-              
-                //actually do stuff here with response
-                //parse response
-              
-                dist = response.data[0].rows[0].elements[0].distance.value;
-                
-                console.log("other form submit response");
-                console.log(response);
-            }
-        });
-      
-      
-   // }
-
-
-    </script>
-   
-    
-   <script>
-          google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Amenity', 'House 1', 'House 2', 'House 3'],
-          ['Police Station', dist, 4, 2],
-          ['Fire', 11, 14, 2],
-          ['Hospital', 6, 11, 3]
-        ]);
-
-        var options = {
-          chart: {
-            title: ' '
-          },
-          bars: 'vertical',
-          vAxis: {format: 'decimal'},
-          height: 300,
-          colors: ['#1b9e77', '#d95f02', '#7570b3']
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('chart_div'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-
-      }
-   </script>
-    
-
-  </main>
-</div> <!-- ends main content outside of sidebar-->
-  
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="scripts/app.js"></script>
 </body>
 
 </html>

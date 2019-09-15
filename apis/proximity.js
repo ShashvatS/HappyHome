@@ -16,8 +16,14 @@ function getLongLat(address, next) {
     url.searchParams.set('key', apikeys_1.APIKEYS.googleAPI);
     url.searchParams.set('address', address);
     request(url.href, function (error, response, body) {
-        body = JSON.parse(body);
-        next(body);
+        if (body === undefined) {
+            next(null);
+            return;
+        }
+        else {
+            body = JSON.parse(body);
+            next(body);
+        }
     });
 }
 function findPlace(locations, place, next) {

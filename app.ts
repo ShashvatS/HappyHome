@@ -7,7 +7,7 @@ import path = require('path');
 
 import bodyParser = require('body-parser');
 import cookieParser = require('cookie-parser');
-import cors = require("cors");
+// import cors = require("cors");
 
 import mainRoutes from './routes/main';
 
@@ -23,19 +23,6 @@ app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-
-var whitelist = [
-    'localhost:5000',
-    'https://syncfiddle.net'
-];
-var corsOptions = {
-    origin: function(origin, callback){
-        var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
-        callback(null, originIsWhitelisted);
-    },
-    credentials: true
-};
-app.use(cors(corsOptions));
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

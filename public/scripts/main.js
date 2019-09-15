@@ -11,7 +11,7 @@ $(document).ready(() => {
                 console.log("mainform submit response");
                 console.log(response);
             }
-        })
+        });
 
         return false;
     });
