@@ -7,6 +7,7 @@ import path = require('path');
 
 import bodyParser = require('body-parser');
 import cookieParser = require('cookie-parser');
+import cors = require("cors");
 
 import mainRoutes from './routes/main';
 
@@ -22,6 +23,7 @@ app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors());
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
